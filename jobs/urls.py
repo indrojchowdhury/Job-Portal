@@ -3,5 +3,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # We will add paths like 'list/', 'create/', etc. very soon
+    path('', views.job_list, name='job_list'),
 ]
