@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Creating a custom user model to handle two types of users
+# Creating a custom user model for handling two types of users
 class User(AbstractUser):
     USER_TYPE_CHOICES = (
         ('seeker', 'Job Seeker'),
