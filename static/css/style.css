@@ -1,4 +1,4 @@
-/* General reset for consistent look across browsers */
+
 * {
     margin: 0;
     padding: 0;
@@ -132,4 +132,78 @@ footer {
     padding: 20px;
     color: #888;
     font-size: 14px;
+}
+
+.auth-box p {
+    display: flex;
+    flex-direction: column; 
+    align-items: stretch;    
+    text-align: left;        
+    margin-bottom: 15px;
+}
+
+.auth-box input {
+    width: 100% !important;  
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box; 
+}
+
+.auth-btn {
+    width: 100% !important;  
+}
+/* Apply Now Button Styling */
+.apply-btn {
+    display: inline-block;
+    background-color: #000; /* Black button */
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.apply-btn:hover {
+    background-color: #333; /* Dark gray on hover */
+    color: #fff;
+}
+
+/* If the user has already applied, you might want a different look */
+.applied-btn {
+    background-color: #28a745; /* Green color */
+    cursor: default;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 15px 50px;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #f4f4f4;
+    text-decoration: underline;
+}
+
+.logout-link {
+    color: #ff4d4d !important; /* লাল রঙের লগআউট বাটন */
 }

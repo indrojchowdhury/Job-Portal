@@ -5,40 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Portal</title>
-    
-    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-
-    <!-- Main Navigation Bar -->
-    <nav>
-        <div class="logo">JobPortal</div>
-        <div class="nav-links">
-            <a href="{% url 'job_list' %}">Home</a>
-            {% if user.is_authenticated %}
-                <!-- Shown only to logged-in users -->
-                <span style="color: #3498db; margin-left: 15px;">Hi, {{ user.username }}</span>
-                <a href="{% url 'logout' %}" style="color: #e74c3c;">Logout</a>
-            {% else %}
-                <!-- Shown to guests -->
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Register</a>
-            {% endif %}
-        </div>
-    </nav>
-
-    <!-- Main Dynamic Content Block -->
-    <div class="container">
-        {% block content %}
-        <!-- Child templates will inject their content here -->
-        {% endblock %}
+    <nav class="navbar">
+    <div class="logo">
+        <a href="{% url 'job_list' %}">JobPortal</a>
     </div>
+    <ul class="nav-links">
+        <li><a href="{% url 'job_list' %}">Home</a></li>
 
-    <!-- Site Footer -->
-    <footer>
-        &copy; 2026 Job Portal | Built with Django
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            
+            {% if user.is_employer %}
+                <li><a href="{% url 'post_job' %}">Post a Job</a></li>
+            {% endif %}
+
+            <li class="user-info">Hi, {{ user.username }}</li>
+            <li><a href="{% url 'logout' %}" class="logout-link">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <h5>JOB PORTAL</h5>
     </footer>
-
 </body>
 </html>

@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="form-container" style="max-width: 400px; margin: 50px auto;">
-    <h2>Login</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="custom-btn">Login</button>
-    </form>
+<div style="display: flex; justify-content: center; align-items: center; min-height: 70vh; width: 100%;">
+    
+    <div class="auth-box">
+        {% if form.errors %}
+            <div class="alert-error">
+                Please register your account if you don't have one!
+            </div>
+        {% endif %}
+
+        <h2>LOGIN</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-wrapper">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="auth-btn">LOGIN</button>
+        </form>
+
+        <p class="auth-footer">
+            Don't have an account? <br>
+            <a href="{% url 'register' %}" class="create-link">Create an account</a>
+        </p>
+    </div>
 </div>
 {% endblock %}

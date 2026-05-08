@@ -1,12 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="form-container" style="max-width: 500px; margin: 50px auto;">
-    <h2>Create Account</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="custom-btn">Register</button>
-    </form>
+<div class="auth-container">
+    <div class="auth-box">
+        <h2>REGISTER</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-wrapper">
+                {% for field in form %}
+                    <p>
+                        {{ field.label_tag }} {{ field }}           {% if field.errors %}
+                            <span class="errorlist">{{ field.errors }}</span>
+                        {% endif %}
+                    </p>
+                {% endfor %}
+            </div>
+            <button type="submit" class="auth-btn">REGISTER</button>
+        </form>
+
+        <p class="auth-footer">
+            Already have an account? <br>
+            <a href="{% url 'login' %}" class="create-link">Login here</a>
+        </p>
+    </div>
 </div>
 {% endblock %}

@@ -33,3 +33,17 @@ def logout_view(request):
     if request.method == 'POST' or request.method == 'GET':
         logout(request)
         return redirect('job_list')
+    
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+    else:
+        form = CustomUserCreationForm()
+    
+    if form.is_valid():
+        user = form.save()
+        login(request, user)
+        next_url = request.GET.get('next')
+        if next_url:
+            return redirect(next_url)
+        return redirect('job_list')    
