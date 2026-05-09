@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container" style="max-width: 600px;">
+<h3 style="text-align: center; margin-bottom: 25px; color: #2c3e50; text-transform: uppercase;">
+    Edit Profile Info
+</h3>
+
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div style="margin-bottom: 15px;">
+            <label>First Name:</label>
+            <input type="text" name="first_name" value="{{ user.first_name }}">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Last Name:</label>
+            <input type="text" name="last_name" value="{{ user.last_name }}">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Phone Number:</label>
+            <input type="text" name="phone" value="{{ profile.phone }}">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Bio:</label>
+            <textarea name="bio" rows="4" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">{{ profile.bio }}</textarea>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label>Profile Picture:</label>
+            <input type="file" name="profile_picture">
+        </div>
+        
+        <button type="submit" class="auth-btn">UPDATE PROFILE</button>
+    </form>
+    
+    <div class="auth-footer">
+        <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

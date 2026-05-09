@@ -8,29 +8,28 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <nav class="navbar">
+   <nav class="navbar">
     <div class="logo">
-        <a href="{% url 'job_list' %}">JobPortal</a>
-    </div>
+    <a href="{% url 'home' %}" class="logo-box">JOB PORTAL</a>
+</div>
+
     <ul class="nav-links">
-        <li><a href="{% url 'job_list' %}">Home</a></li>
-
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-            
-            {% if user.is_employer %}
-                <li><a href="{% url 'post_job' %}">Post a Job</a></li>
-            {% endif %}
-
-            <li class="user-info">Hi, {{ user.username }}</li>
-            <li><a href="{% url 'logout' %}" class="logout-link">Logout</a></li>
-        {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-        {% endif %}
-    </ul>
+    <li><a href="{% url 'job_list' %}" class="nav-box">Jobs</a></li>
+    
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'dashboard' %}" class="nav-box">Dashboard</a></li>
+        <li>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="nav-box logout-btn">Logout</button>
+            </form>
+        </li>
+    {% else %}
+        <li><a href="{% url 'login' %}" class="nav-box">Login</a></li>
+        <li><a href="{% url 'register' %}" class="nav-box register-btn">Register</a></li>
+    {% endif %}
+</ul>
 </nav>
-
     <main class="container">
         {% block content %}
         {% endblock %}

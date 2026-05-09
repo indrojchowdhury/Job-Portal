@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero" style="text-align: center; padding: 40px 0;">
+    <h1>Welcome to Job Portal</h1>
+    <p>Find jobs and apply online</p>
+</div>
+
+<section class="latest-jobs">
+    <h2 style="text-align: center; margin-bottom: 20px;">Latest Jobs Section</h2>
+    <div class="job-grid">
+        {% for job in jobs %}
+            <div class="job-card">
+                <h3>{{ job.title }}</h3>
+                <p><strong>Company:</strong> {{ job.company_name }}</p>
+                <p><strong>Location:</strong> {{ job.location }}</p>
+                <p><strong>Salary:</strong> {{ job.salary }}</p>
+                
+                <div class="button-group" style="margin-top: 15px;">
+                    {% if user.is_authenticated %}
+                        <!-- লগইন করা থাকলে সরাসরি Apply বাটন -->
+                        <a href="{% url 'apply_now' job.id %}" class="apply-btn" style="background: black; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;">Apply Now</a>
+                    {% else %}
+                        <!-- লগইন করা না থাকলে Login to Apply বাটন -->
+                        <a href="{% url 'login' %}" class="apply-btn" style="background: black; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block;">Login to Apply</a>
+                    {% endif %} <!-- এখানে endif হবে -->
+
+                    <!-- View Details লিঙ্ক -->
+                    <a href="{% url 'job_detail' job.id %}" class="view-btn" style="margin-left: 15px; color: #666; text-decoration: underline; font-size: 14px;">View Details</a>
+                </div>
+            </div>
+        {% empty %}
+            <p style="text-align: center;">No jobs available right now.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container" style="max-width: 600px; margin: 20px auto; padding: 30px; text-align: center;">
+    <h3 style="display: block; margin-bottom: 5px; color: #2c3e50;">
+        APPLY FOR: {{ job.title|upper }}
+    </h3>
+    <p style="display: block; margin-bottom: 25px; color: #666; font-size: 16px;">
+        Company: <strong>{{ job.company_name }}</strong>
+    </p>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div style="margin-bottom: 15px; text-align: left;">
+            <label style="font-weight: bold;">Cover Letter:</label>
+            <textarea name="cover_letter" rows="5" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" placeholder="Tell us why you are a good fit..."></textarea>
+        </div>
+
+        <div style="margin-bottom: 20px; text-align: left;">
+            <label style="font-weight: bold;">Upload Resume (PDF/Doc):</label>
+            <input type="file" name="resume" required style="margin-top: 5px;">
+        </div>
+
+        <button type="submit" class="auth-btn">SUBMIT APPLICATION</button>
+    </form>
+    
+    <div class="auth-footer">
+        <a href="{% url 'job_list' %}">Cancel and Back</a>
+    </div>
+</div>
+{% endblock %}

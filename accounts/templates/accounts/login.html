@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div style="display: flex; justify-content: center; align-items: center; min-height: 70vh; width: 100%;">
+<div class="auth-container">
+    {% if form.errors %}
+        <p style="color: red; text-align: center; font-size: 14px;">Invalid username or password!</p>
+    {% endif %}
+
+    <h2>LOGIN</h2>
     
-    <div class="auth-box">
-        {% if form.errors %}
-            <div class="alert-error">
-                Please register your account if you don't have one!
-            </div>
-        {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-wrapper">
+            {% for field in form %}
+                <p>
+                    {{ field.label_tag }} 
+                    {{ field }}
+                </p>
+            {% endfor %}
+        </div>
+        <button type="submit">LOGIN</button>
+    </form>
 
-        <h2>LOGIN</h2>
-        
-        <form method="POST">
-            {% csrf_token %}
-            <div class="form-wrapper">
-                {{ form.as_p }}
-            </div>
-            <button type="submit" class="auth-btn">LOGIN</button>
-        </form>
-
-        <p class="auth-footer">
-            Don't have an account? <br>
-            <a href="{% url 'register' %}" class="create-link">Create an account</a>
-        </p>
+    <div class="auth-footer">
+        <p>Don't have an account?</p>
+        <a href="{% url 'register' %}">Create an account</a>
     </div>
 </div>
 {% endblock %}

@@ -1,28 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- বাড়তি ডিভ সরিয়ে শুধু auth-container রাখা হয়েছে ডাবল ব্যাকগ্রাউন্ড এড়াতে -->
 <div class="auth-container">
-    <div class="auth-box">
-        <h2>REGISTER</h2>
-        
-        <form method="POST">
-            {% csrf_token %}
-            <div class="form-wrapper">
-                {% for field in form %}
-                    <p>
-                        {{ field.label_tag }} {{ field }}           {% if field.errors %}
-                            <span class="errorlist">{{ field.errors }}</span>
-                        {% endif %}
-                    </p>
-                {% endfor %}
-            </div>
-            <button type="submit" class="auth-btn">REGISTER</button>
-        </form>
+    <h2>REGISTER</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-wrapper">
+            {% for field in form %}
+                <p>
+                    {{ field.label_tag }} 
+                    {{ field }}
+                    {% if field.errors %}
+                        <span class="errorlist" style="color: red; font-size: 12px;">{{ field.errors }}</span>
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </div>
+        <button type="submit">REGISTER</button>
+    </form>
 
-        <p class="auth-footer">
-            Already have an account? <br>
-            <a href="{% url 'login' %}" class="create-link">Login here</a>
-        </p>
+    <div class="auth-footer">
+        <p>Already have an account?</p>
+        <a href="{% url 'login' %}">Login here</a>
     </div>
 </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-
+/* --- ১. বেসিক রিসেট ও লেআউট --- */
 * {
     margin: 0;
     padding: 0;
@@ -9,201 +9,404 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f2f5;
     color: #333;
-    line-height: 1.6;
-}
-
-/* Navigation Bar Styling */
-nav {
-    background-color: #2c3e50;
-    color: white;
-    padding: 15px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-nav .logo {
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-nav .nav-links a {
-    color: #ecf0f1;
-    text-decoration: none;
-    margin-left: 20px;
-    transition: color 0.3s;
-}
-
-nav .nav-links a:hover {
-    color: #3498db;
-}
-
-/* Main Container */
-.container {
-    max-width: 1000px;
-    margin: 30px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-/* Job Card Styling */
-.job-card {
-    border: 1px solid #e1e4e8;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    transition: transform 0.2s;
-}
-
-.job-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.job-card h3 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
-
-.job-card p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-/* Form Styling (Login/Register) */
-form {
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* ফুটার সবসময় নিচে রাখার জন্য */
 }
 
-form p {
-    margin-bottom: 15px;
-}
-
-input[type="text"], 
-input[type="email"], 
-input[type="password"], 
-select, 
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-/* Button Styling */
-.btn {
-    display: inline-block;
-    background-color: #3498db;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
-    text-align: center;
-}
-
-.btn:hover {
-    background-color: #2980b9;
-}
-
-.btn-success {
-    background-color: #27ae60;
-}
-
-.btn-success:hover {
-    background-color: #219150;
-}
-
-/* Footer style or spacing */
-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding: 20px;
-    color: #888;
-    font-size: 14px;
-}
-
-.auth-box p {
-    display: flex;
-    flex-direction: column; 
-    align-items: stretch;    
-    text-align: left;        
-    margin-bottom: 15px;
-}
-
-.auth-box input {
-    width: 100% !important;  
-    padding: 10px;
-    margin-top: 5px;
-    box-sizing: border-box; 
-}
-
-.auth-btn {
-    width: 100% !important;  
-}
-/* Apply Now Button Styling */
-.apply-btn {
-    display: inline-block;
-    background-color: #000; /* Black button */
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.apply-btn:hover {
-    background-color: #333; /* Dark gray on hover */
-    color: #fff;
-}
-
-/* If the user has already applied, you might want a different look */
-.applied-btn {
-    background-color: #28a745; /* Green color */
-    cursor: default;
-}
+/* --- ২. নেভিগেশন বার --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
-    padding: 15px 50px;
-    color: white;
+    background-color: #2c3e50;
+    padding: 12px 50px;
+}
+
+.logo-box {
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-decoration: none !important;
+    color: white !important;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 15px;
+    align-items: center;
 }
 
-.nav-links a {
+.nav-box, .logout-btn {
+    text-decoration: none !important;
+    color: white !important;
+    padding: 8px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    min-width: 100px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+/* --- ৩. মেইন কন্টেইনার (হোম পেজের বড় সাদা অংশ) --- */
+.container {
+    max-width: 1000px;
+    width: 90%;
+    margin: 30px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    flex: 1; /* এটি ফুটারকে নিচে ঠেলে দেবে */
+}
+
+/* ৪. ডাবল সাদা ব্যাকগ্রাউন্ড রিমুভার (খুবই গুরুত্বপূর্ণ) */
+/* যদি পেজে auth-container থাকে, তবে বাইরের সাদা বক্সটি স্বচ্ছ হয়ে যাবে */
+body:has(.auth-container) .container {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* --- ৫. লগইন ও রেজিস্ট্রেশন কার্ড (Screenshot 3 অনুযায়ী) --- */
+.auth-container {
+    max-width: 500px;
+    margin: 20px auto;
+    background: white;
+    padding: 30px 45px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid #e1e4e8;
+}
+
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-transform: uppercase;
+}
+
+.auth-container form p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.auth-container input, .auth-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.auth-container button[type="submit"] {
+    width: 100%;
+    background-color: #2c3e50;
     color: white;
-    text-decoration: none;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
     font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
-.nav-links a:hover {
-    color: #f4f4f4;
-    text-decoration: underline;
+/* --- ৬. জব কার্ড ডিজাইন (Screenshot 1 & 2) --- */
+.job-card {
+    border: 1px solid #e1e4e8;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: left;
 }
 
-.logout-link {
-    color: #ff4d4d !important; /* লাল রঙের লগআউট বাটন */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
 }
+
+.apply-btn {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.view-btn {
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #666;
+    border-radius: 4px;
+}
+
+/* --- ৭. ফুটার --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    background-color: #f0f2f5; /* বডির সাথে ম্যাচ করা */
+    width: 100%;
+}
+/* --- লগইন ও রেজিস্ট্রেশন পেজের নিচের লিঙ্কগুলো বক্স স্টাইল করা --- */
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+/* লিঙ্কগুলোকে ছোট বক্স বাটন বানানো */
+.auth-footer a {
+    text-decoration: none !important; /* আন্ডারলাইন পুরোপুরি রিমুভ */
+    color: #2c3e50 !important;
+    border: 1px solid #2c3e50; /* ছোট বক্সের বর্ডার */
+    padding: 5px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* মাউস নিলে বক্সের রঙ পরিবর্তন হবে */
+.auth-footer a:hover {
+    background-color: #2c3e50;
+    color: white !important;
+    text-decoration: none !important;
+}
+/* --- এক পেজে (No Scroll) ফিট করার জন্য ফাইনাল সমাধান --- */
+
+/* ১. মেইন কন্টেইনারের উচ্চতা কমানো */
+.auth-container {
+    max-width: 450px !important;
+    margin: 15px auto !important; /* উপরে তোলার জন্য মার্জিন একদম কম */
+    padding: 15px 35px !important; /* উচ্চতা কমাতে প্যাডিং কমানো হয়েছে */
+}
+
+/* ২. টাইটেলের গ্যাপ কমানো */
+.auth-container h2 {
+    margin-bottom: 8px !important;
+    font-size: 1.3rem !important;
+}
+
+/* ৩. ফর্মের প্রতিটি ফিল্ডের মাঝখানের গ্যাপ একদম কমিয়ে দেওয়া */
+.auth-container form p {
+    margin-bottom: 5px !important; /* এক ফিল্ড থেকে অন্যটির দূরত্ব কমানো */
+    gap: 1px !important;
+}
+
+/* ৪. ইনপুট বক্সের উচ্চতা কমিয়ে আনা (যাতে স্ক্রল না করতে হয়) */
+.auth-container input, 
+.auth-container select {
+    padding: 6px 10px !important; /* বক্স ছোট করা হয়েছে */
+    font-size: 14px !important;
+    margin-top: 2px !important;
+}
+
+/* ৫. রেজিস্টার বাটন এবং নিচের লিঙ্কের গ্যাপ কমানো */
+.auth-container button[type="submit"] {
+    padding: 10px !important;
+    margin-top: 5px !important;
+}
+
+.auth-footer {
+    margin-top: 10px !important;
+    padding-top: 8px !important;
+}
+
+.auth-footer a {
+    padding: 4px 10px !important;
+    font-size: 13px !important;
+}
+/* --- শুধুমাত্র রেজিস্ট্রেশন ও লগইন পেজকে উপরে তোলার জন্য --- */
+
+.auth-container {
+    /* মার্জিন টপ কমিয়ে বক্সটিকে একদম নেভবারের কাছাকাছি নেওয়া হয়েছে */
+    margin-top: 10px !important; 
+    
+    /* ভেতরের প্যাডিং কমিয়ে উচ্চতা কমানো হয়েছে */
+    padding-top: 10px !important;
+    padding-bottom: 15px !important;
+}
+
+/* ইনপুট ফিল্ডগুলোর মাঝখানের বাড়তি জায়গা সরানো */
+.auth-container form p {
+    margin-bottom: 3px !important;
+}
+
+/* টাইটেলের নিচের গ্যাপ কমানো */
+.auth-container h2 {
+    margin-bottom: -20px !important;
+}
+/* View Details বাটনকে Login to Apply এর মতো করা */
+.view-btn {
+    display: inline-block;
+    background-color: #f8f9fa; /* হালকা গ্রে ব্যাকগ্রাউন্ড */
+    color: #333 !important; /* টেক্সট কালার */
+    padding: 10px 20px;
+    border: 1px solid #ccc; /* বর্ডার */
+    border-radius: 4px;
+    text-decoration: none !important; /* আন্ডারলাইন পুরোপুরি রিমুভ */
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+
+/* মাউস নিলে হালকা রঙ পরিবর্তন হবে */
+.view-btn:hover {
+    background-color: #e2e6ea;
+    text-decoration: none !important;
+}
+
+/* বাটনগুলোর মাঝখানে গ্যাপ নিশ্চিত করা */
+.button-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 15px;
+}
+/* বাটন গ্রুপ এলাইনমেন্ট */
+.button-group {
+    display: flex;
+    gap: 12px;
+    align-items: center; /* এটি নিশ্চিত করবে বাটন দুটি একদম সোজা থাকবে */
+    margin-top: 15px;
+}
+
+/* বাটন দুটির কমন স্টাইল (যাতে মাপ একদম সমান হয়) */
+.apply-btn, .view-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; /* ফিক্সড উচ্চতা */
+    padding: 0 20px; /* দুই পাশে সমান গ্যাপ */
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    text-decoration: none !important;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+/* কালো বাটন (Login to Apply) */
+.apply-btn {
+    background-color: #000;
+    color: white !important;
+    border: 1px solid #000;
+}
+
+/* সাদা বাটন (View Details) */
+.view-btn {
+    background-color: #fff;
+    color: #333 !important;
+    border: 1px solid #ccc;
+}
+
+.view-btn:hover {
+    background-color: #f5f5f5;
+    border-color: #bbb;
+}
+/* ডিটেইলস পেজের Back to Job List বাটন ফিক্স */
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 18px; /* সুন্দর বক্স শেপ */
+    color: #333 !important; /* টেক্সট কালার */
+    text-decoration: none !important; /* আন্ডারলাইন পুরোপুরি রিমুভ */
+    border: 1px solid #ccc; /* বর্ডার যোগ করা হয়েছে */
+    border-radius: 4px; /* হালকা রাউন্ডেড কর্নার */
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* মাউস নিলে হালকা ইফেক্ট */
+.back-btn:hover {
+    background-color: #f8f9fa;
+    border-color: #bbb;
+    text-decoration: none !important;
+}
+/* ৩টি বাটন (Jobs, Dashboard, Logout) একদম সমান করার চূড়ান্ত সমাধান */
+.nav-box, 
+.logout-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 40px !important; /* ফিক্সড উচ্চতা সবার জন্য */
+    min-width: 100px !important; /* ফিক্সড চওড়া সবার জন্য */
+    padding: 0 15px !important;
+    text-decoration: none !important;
+    color: white !important;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 4px !important;
+    font-size: 16px !important;
+    font-family: inherit !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    transition: 0.3s;
+}
+
+/* মাউস নিলে শুধু Logout বাটনটি লাল হবে */
+.logout-btn:hover {
+    background-color: #ff0000 !important;
+    border-color: #ff0000 !important;
+}
+/* ড্যাশবোর্ডের সব লেখা এবং টেবিল সাজানো */
+.dashboard-container {
+    padding: 20px !important;
+}
+
+.dash-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 2px solid #eee !important;
+    margin-bottom: 25px !important;
+    padding-bottom: 10px !important;
+}
+
+.dash-cards {
+    display: flex !important;
+    gap: 20px !important;
+    margin-bottom: 30px !important;
+}
+
+.card {
+    flex: 1 !important;
+    background: #fdfdfd !important;
+    border: 1px solid #ddd !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+}
+
+/* টেবিল ডিজাইন */
+.styled-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.styled-table th, .styled-table td {
+    border: 1px solid #ddd !important;
+    padding: 12px !important;
+    text-align: left !important;
+}
+
+.styled-table th {
+    background-color: #2c3e50 !important;
+    color: white !important;
+}
+
+
+

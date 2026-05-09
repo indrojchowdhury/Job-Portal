@@ -3,7 +3,7 @@ from django.db import models
 from django.conf import settings
 
 class Job(models.Model):
-    # Linking the job to the user who created it (Employer)
+    # যে ইউজার জবটি তৈরি করেছেন (Employer)
     employer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='jobs')
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -16,11 +16,33 @@ class Job(models.Model):
         return self.title
 
 class Application(models.Model):
-    # Linking the job and the applicant (Seeker)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
-    applicant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='applied_jobs')
-    resume_link = models.URLField(max_length=500, blank=True, null=True) # Simple link for resume
+    applicant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    cover_letter = models.TextField(blank=True, null=True)
+    resume = models.FileField(upload_to='resumes/', blank=True, null=True) # এর জন্য 'Pillow' লাইব্রেরি লাগে না
     applied_at = models.DateTimeField(auto_now_add=True)
 
+class Application(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Accepted', 'Accepted'),
+        ('Rejected', 'Rejected'),
+    ]
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
+    applicant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    cover_letter = models.TextField(blank=True, null=True)
+    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending') # নতুন ফিল্ড
+    applied_at = models.DateTimeField(auto_now_add=True)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
+    phone = models.CharField(max_length=15, blank=True)
+    bio = models.TextField(blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+
     def __str__(self):
-        return f"{self.applicant.username} applied for {self.job.title}"
+        return f"{self.user.username}'s Profile"
+
+

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="detail-container">
+    <h1>{{ job.title }}</h1>
+    
+    <div class="job-info-item">
+        <strong>Company:</strong> {{ job.company }}
+    </div>
+    
+    <div class="job-info-item">
+        <strong>Location:</strong> {{ job.location }}
+    </div>
+    
+    <div class="job-info-item">
+        <strong>Salary:</strong> {{ job.salary }}
+    </div>
+
+    <div class="job-description-box">
+        <h3>Job Description</h3>
+        <p>{{ job.description }}</p>
+    </div>
+
+    <!-- এখানে job_list হলো আপনার হোমপেজের URL name -->
+    <a href="{% url 'job_list' %}" class="back-btn">← Back to Job List</a>
+</div>
+{% endblock %}
