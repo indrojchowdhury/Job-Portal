@@ -363,50 +363,7 @@ footer {
     background-color: #ff0000 !important;
     border-color: #ff0000 !important;
 }
-/* ড্যাশবোর্ডের সব লেখা এবং টেবিল সাজানো */
-.dashboard-container {
-    padding: 20px !important;
-}
 
-.dash-header {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    border-bottom: 2px solid #eee !important;
-    margin-bottom: 25px !important;
-    padding-bottom: 10px !important;
-}
-
-.dash-cards {
-    display: flex !important;
-    gap: 20px !important;
-    margin-bottom: 30px !important;
-}
-
-.card {
-    flex: 1 !important;
-    background: #fdfdfd !important;
-    border: 1px solid #ddd !important;
-    padding: 20px !important;
-    border-radius: 8px !important;
-}
-
-/* টেবিল ডিজাইন */
-.styled-table {
-    width: 100% !important;
-    border-collapse: collapse !important;
-}
-
-.styled-table th, .styled-table td {
-    border: 1px solid #ddd !important;
-    padding: 12px !important;
-    text-align: left !important;
-}
-
-.styled-table th {
-    background-color: #2c3e50 !important;
-    color: white !important;
-}
 
 
 
