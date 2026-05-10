@@ -3,22 +3,22 @@ from django.contrib.auth.decorators import login_required
 from .models import Job, Application, UserProfile
 from django.contrib import messages
 
-# ১. হোম পেজ (Welcome + Latest Jobs)
+# Home Page (Welcome + Latest Jobs)
 def home(request):
     latest_jobs = Job.objects.all().order_by('-created_at')[:5]
     return render(request, 'home.html', {'jobs': latest_jobs})
 
-# ২. জব লিস্ট পেজ
+# Job List Page
 def job_list(request):
     jobs = Job.objects.all().order_by('-created_at')
     return render(request, 'jobs/job_list.html', {'jobs': jobs})
 
-# ৩. জব ডিটেইল পেজ
+# Job Detail Page
 def job_detail(request, job_id):
     job = get_object_or_404(Job, id=job_id)
     return render(request, 'jobs/job_detail.html', {'job': job})
 
-# ৪. জব অ্যাপ্লাই পেজ (Cover Letter + Resume)
+# Job Application (Cover Letter + Resume)
 @login_required
 def apply_now(request, job_id):
     job = get_object_or_404(Job, id=job_id)
@@ -42,18 +42,18 @@ def apply_now(request, job_id):
 
     return render(request, 'apply_form.html', {'job': job})
 
-# ৫. মেইন ড্যাশবোর্ড গেটওয়ে (ইউজার টাইপ অনুযায়ী ড্যাশবোর্ডে পাঠাবে)
+# Main Dashboard (Job Seeker + Employer)
 @login_required
 def dashboard(request):
-    # ইউজার যদি Employer হয় তবে তাকে Employer Dashboard-এ পাঠাবে
+    # If user is an employer, redirect to employer dashboard
     if hasattr(request.user, 'user_type') and request.user.user_type == 'employer':
         return redirect('employer_dashboard')
     
-    # নতুবা Job Seeker Dashboard দেখাবে
+    # Otherwise, show Job Seeker Dashboard
     applications = Application.objects.filter(applicant=request.user).order_by('-applied_at')
     return render(request, 'seeker_dashboard.html', {'applications': applications})
 
-# ৬. এমপ্লয়ার ড্যাশবোর্ড
+# Employer Dashboard (My Jobs + Applicants)
 @login_required
 def employer_dashboard(request):
     my_jobs = Job.objects.filter(employer=request.user).order_by('-created_at')
@@ -65,7 +65,7 @@ def employer_dashboard(request):
     }
     return render(request, 'employer_dashboard.html', context)
 
-# ৭. অ্যাপ্লিকেশন স্ট্যাটাস আপডেট (Accept/Reject)
+# Application Status Update (Accept/Reject)
 @login_required
 def update_application_status(request, app_id, status):
     application = get_object_or_404(Application, id=app_id, job__employer=request.user)
@@ -74,7 +74,7 @@ def update_application_status(request, app_id, status):
     messages.success(request, f"Application {status} successfully!")
     return redirect('employer_dashboard')
 
-# ৮. প্রোফাইল এডিট ভিউ
+# Profile Management (Edit Profile + Upload Resume)
 @login_required
 def edit_profile(request):
     profile, created = UserProfile.objects.get_or_create(user=request.user)
@@ -97,7 +97,7 @@ def edit_profile(request):
 
 @login_required
 def create_job(request):
-    # শুধুমাত্র এমপ্লয়াররাই জব পোস্ট করতে পারবে
+    # Only employers can post jobs
     if hasattr(request.user, 'user_type') and request.user.user_type != 'employer':
         return redirect('dashboard')
 

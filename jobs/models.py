@@ -3,7 +3,7 @@ from django.db import models
 from django.conf import settings
 
 class Job(models.Model):
-    # যে ইউজার জবটি তৈরি করেছেন (Employer)
+    # The user who created the job (Employer)
     employer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='jobs')
     title = models.CharField(max_length=255)
     description = models.TextField()

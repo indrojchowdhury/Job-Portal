@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="dashboard-wrapper">
-    <!-- ১. হেডার: বামে টাইটেল, ডানে নাম -->
+    <!-- Header style and layout -->
     <div class="dash-top" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 30px;">
         <h2 style="font-size: 24px; color: #2c3e50;">Employer Dashboard</h2>
         <div class="profile-info" style="font-size: 16px; color: #555;">
@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <!-- ২. সেকশন কার্ড ডিজাইন (পোস্ট জব এবং প্রোফাইল এডিট) -->
+    <!-- ২. Session Card view & Job Posts layout -->
     <div class="dashboard-sections" style="display: flex; gap: 20px; margin-bottom: 30px;">
         <div class="info-card" style="flex: 1; background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
             <h3 style="margin-bottom: 10px;">Post New Jobs</h3>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <!-- ৩. মাই পোস্ট করা জবস -->
+    <!-- My Posted Jobs -->
     <div class="job-list-section" style="margin-bottom: 40px;">
         <h3 style="margin-bottom: 15px; color: #2c3e50;">My Posted Jobs:</h3>
         <ul style="list-style: none; padding-left: 0;">
@@ -39,7 +39,7 @@
         </ul>
     </div>
 
-    <!-- ৪. অ্যাপ্লিকেন্ট টেবিল (একসেপ্ট/রিজেক্ট অপশনসহ) -->
+    <!-- Recent Applicants -->
     <div class="applications-list">
         <h3 style="margin-bottom: 15px; color: #2c3e50;">Recent Applicants:</h3>
         <table style="width: 100%; border-collapse: collapse; background: white;">

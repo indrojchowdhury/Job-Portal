@@ -12,6 +12,4 @@ urlpatterns = [
     path('employer-dashboard/', views.employer_dashboard, name='employer_dashboard'),
     path('update-status/<int:app_id>/<str:status>/', views.update_application_status, name='update_status'),
     path('post-job/', views.create_job, name='create_job'),
-
-
 ]
