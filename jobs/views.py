@@ -12,10 +12,10 @@ def home(request):
 
 # Job List Page (Added Advanced Multi-Field Filtering, Searching, and Pagination)
 def job_list(request):
-    # 1. Fetch all jobs from database (Latest jobs displayed first)
+    # Fetch all jobs from database (Latest jobs displayed first)
     job_objects = Job.objects.all().order_by('-created_at')
     
-    # 2. Filtering logic by job name, company name, or location
+    # Filtering logic by job name, company name, or location
     query = request.GET.get('job_name')
     if query:
         # Searches across title, company_name, and location fields simultaneously
@@ -25,7 +25,7 @@ def job_list(request):
             Q(location__icontains=query)
         )
     
-    # 3. Pagination logic (Displays 2 jobs per page for testing)
+    # Pagination logic (Displays 2 jobs per page for testing)
     paginator = Paginator(job_objects, 2)
     page_number = request.GET.get('page')
     
