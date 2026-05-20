@@ -61,7 +61,6 @@ body {
     flex: 1; /* This will push the footer down */
 }
 
-/* Double White Background Remover (Crucial) */
 /* If the page contains auth-container, the outer white box becomes transparent */
 body:has(.auth-container) .container {
     background: transparent !important;
@@ -360,4 +359,65 @@ footer {
 .logout-btn:hover {
     background-color: #ff0000 !important;
     border-color: #ff0000 !important;
+}
+
+/* --- Mobile Responsive Navbar Fix --- */
+@media screen and (max-width: 600px) {
+    /* Adjust body padding for mobile screens */
+    body {
+        padding: 5px;
+    }
+
+    /* Main navbar container styling */
+    nav, .navbar {
+        display: flex !important;
+        flex-direction: column !important; /* Stack "JOB PORTAL" on top and buttons below */
+        gap: 12px !important;              /* Adds space between brand name and the button row */
+        align-items: center !important;
+        padding: 12px 10px !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Navigation list container */
+    nav ul, .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;     /* Keeps buttons side by side horizontally */
+        justify-content: space-between !important; /* Distributes buttons evenly across the width */
+        width: 100% !important;             /* Ensures buttons occupy full width of mobile screen */
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Individual link items */
+    nav li {
+        flex: 1 !important;                 /* Forces all buttons to be equal in size */
+        margin: 0 4px !important;           /* Small gap between buttons */
+    }
+
+    /* Button adjustments for small screens */
+    nav a, .btn {
+        display: block !important;
+        text-align: center !important;
+        padding: 8px 4px !important;        /* Optimized padding for compact screens */
+        font-size: 13px !important;         /* Perfectly readable yet small enough text */
+        white-space: nowrap !important; 
+    }
+
+    /* Heading sizing for body content */
+    h1 {
+        font-size: 22px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+
+    /* Layout containers */
+    .container {
+        width: 100% !important;
+        margin: 0 auto;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
 }

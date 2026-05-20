@@ -1,8 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- No Hero section -->
 <section class="job-list-wrapper" style="padding-top: 40px;">
+    
+    <div class="search-container" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 0 20px;">
+        
+        <form method="GET" action="" style="display: flex; gap: 10px; max-width: 500px; margin-bottom: 20px;">
+            <input 
+                type="text" 
+                name="job_name" 
+                placeholder="Search by job title (e.g., Python)..." 
+                value="{{ query|default:'' }}"
+                style="flex: 1; padding: 10px 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;"
+            >
+            <button type="submit" class="apply-btn" style="border: none; cursor: pointer; padding: 10px 20px;">Filter</button>
+            
+            {% if query %}
+                <a href="{% url 'job_list' %}" class="view-btn" style="text-decoration: none; display: inline-flex; align-items: center; padding: 10px 20px;">Clear</a>
+            {% endif %}
+        </form>
+
+        <div class="popular-categories" style="margin-bottom: 25px;">
+            <p style="margin-bottom: 10px; font-weight: bold; color: #333;">Popular Job Fields:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="?job_name=Finance Manager" class="view-btn" style="text-decoration: none; padding: 6px 15px; font-size: 13px; {% if query == 'Finance Manager' %}background-color: #000; color: #fff;{% endif %}">Finance Manager</a>
+                <a href="?job_name=Software Engineer" class="view-btn" style="text-decoration: none; padding: 6px 15px; font-size: 13px; {% if query == 'Software Engineer' %}background-color: #000; color: #fff;{% endif %}">Software Engineer</a>
+                <a href="?job_name=Web Developer" class="view-btn" style="text-decoration: none; padding: 6px 15px; font-size: 13px; {% if query == 'Web Developer' %}background-color: #000; color: #fff;{% endif %}">Web Developer</a>
+                <a href="?job_name=Data Analyst" class="view-btn" style="text-decoration: none; padding: 6px 15px; font-size: 13px; {% if query == 'Data Analyst' %}background-color: #000; color: #fff;{% endif %}">Data Analyst</a>
+                <a href="?job_name=Marketing Executive" class="view-btn" style="text-decoration: none; padding: 6px 15px; font-size: 13px; {% if query == 'Marketing Executive' %}background-color: #000; color: #fff;{% endif %}">Marketing Executive</a>
+            </div>
+        </div>
+
+        {% if query %}
+            <div class="search-result-counter" style="margin-top: 15px; font-size: 15px; color: #555;">
+                Found <strong>{{ jobs.paginator.count }}</strong> job(s) matching your search for <span style="background: #eee; padding: 2px 8px; border-radius: 4px; font-weight: bold; color: #000;">"{{ query }}"</span>
+            </div>
+        {% endif %}
+
+    </div>
+
     <div class="job-grid">
         {% for job in jobs %}
             <div class="job-card">
@@ -21,8 +57,37 @@
                 </div>
             </div>
         {% empty %}
-            <p>No jobs available right now.</p>
+            <p style="grid-column: 1/-1; text-align: center; color: #666; font-size: 16px;">No jobs available matching your criteria.</p>
         {% endfor %}
     </div>
+
+    {% if jobs.has_other_pages %}
+    <div class="pagination-wrapper" style="max-width: 1200px; margin: 40px auto 0 auto; text-align: center;">
+        <div class="pagination-buttons" style="display: inline-flex; gap: 8px; align-items: center;">
+            
+            {% if jobs.has_previous %}
+                <a href="?page={{ jobs.previous_page_number }}{% if query %}&job_name={{ query }}{% endif %}" class="view-btn" style="text-decoration: none; padding: 8px 16px;">&laquo; Previous</a>
+            {% else %}
+                <span class="view-btn" style="opacity: 0.5; pointer-events: none; padding: 8px 16px;">&laquo; Previous</span>
+            {% endif %}
+
+            {% for i in jobs.paginator.page_range %}
+                {% if jobs.number == i %}
+                    <span class="apply-btn" style="padding: 8px 16px; font-weight: bold;">{{ i }}</span>
+                {% else %}
+                    <a href="?page={{ i }}{% if query %}&job_name={{ query }}{% endif %}" class="view-btn" style="text-decoration: none; padding: 8px 16px;">{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if jobs.has_next %}
+                <a href="?page={{ jobs.next_page_number }}{% if query %}&job_name={{ query }}{% endif %}" class="view-btn" style="text-decoration: none; padding: 8px 16px;">Next &raquo;</a>
+            {% else %}
+                <span class="view-btn" style="opacity: 0.5; pointer-events: none; padding: 8px 16px;">Next &raquo;</span>
+            {% endif %}
+
+        </div>
+    </div>
+    {% endif %}
+
 </section>
 {% endblock %}
