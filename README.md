@@ -1,23 +1,24 @@
 # Django-Job-Portal
 
-This is a clean, modular, and fully-featured Job Portal web application built using **Django**. The project focuses heavily on backend logic, secure workflows, and dynamic frontend rendering using Django Templates.
+This is a fully-featured Job Portal web application built using **Python, Django, and MySQL**. The project focuses heavily on backend logic, secure workflows, dynamic frontend rendering using Django Templates, and it is fully deployed and ready for production.
 
 ---
 
 ## 📝 Project Summary
 
-I built this Django-based job portal to manage job postings and applications efficiently. It features a custom user model supporting role-based authentication for **Job Seekers** and **Employers**. 
+I built this Django-based job portal to manage job postings and applications efficiently. It features a custom user model supporting role-based authentication for **Job Seekers** and **Employers** using a **MySQL** database. 
 
-The system includes a complete workflow where employers can post and manage jobs, while job seekers can browse listings, upload resumes, and track their application status. To keep the app secure, I implemented strict permission-based access control and protected views. The entire frontend is rendered responsively using **Django Templates**, and the project is configured with deployment-ready settings for static and media file handling.
+The system includes a complete workflow where employers can post jobs, and job seekers can browse listings and apply by uploading their resumes. Employers can also easily view and download these resumes directly from their dashboard. To keep the app secure, I implemented strict permission-based access control and protected views. The entire frontend is responsive, built with **Django Templates**, and the project is fully deployed with proper media and static file handling.
 
 ---
 
 ## 🛠️ Tools & Tech Stack Used
 
-* **Backend Framework:** Django (MVC Architecture)
-* **Database:** Relational Database with optimized relationships
+* **Backend Framework:** Python & Django (MVC Architecture)
+* **Database:** MySQL (Relational Database with optimized relationships)
 * **Frontend Rendering:** Django Templates, HTML5, CSS3, and Responsive UI
-* **File Storage:** Django Media handling (for secure Resume/PDF uploads)
+* **File Storage:** Django Media handling (for secure Resume uploads and downloads)
+* **Deployment:** Fully deployed and production-ready setup
 
 ---
 
@@ -25,24 +26,25 @@ The system includes a complete workflow where employers can post and manage jobs
 
 ### 1. Custom User Model & Role Authentication
 * **Role-Based Sign-up:** Separate registration, profiles, and dashboards for **Job Seekers** and **Employers**.
-* **Custom User System:** Built extending Django’s BaseUserManager to cleanly handle user roles from the root.
+* **Custom User System:** Built using Django’s BaseUserManager to cleanly handle user roles from the root.
 
-### 2. Complete Job & Application Workflow
-* **Job Posting & Management:** Employers can create, edit, and close job posts.
-* **Browsing & Applying:** Job seekers can seamlessly view active jobs and apply by filling out forms and uploading their resumes.
-* **Status Tracking:** An application management dashboard where employers can update application statuses (e.g., Pending, Reviewed, Shortlisted, Rejected).
+### 2. Job & Application Workflow (with Resume Handling)
+* **Job Posting:** Employers can create, edit, and close job posts dynamically.
+* **Resume Upload:** Job seekers can fill out forms and upload their resumes (PDF/Doc) when applying.
+* **Resume Download:** Employers have full access to view and download applicant resumes directly from their management dashboard.
+* **Status Tracking:** An application management system where employers can update status (e.g., Pending, Reviewed, Shortlisted, Rejected).
 
 ### 3. Permissions & Security
-* **Protected Views:** Used Django’s login decorators (`@login_required`) and mixins to prevent unauthorized users from accessing sensitive pages.
-* **Access Control:** Ensured that job seekers cannot view applicant management lists and employers cannot apply for jobs.
+* **Protected Views:** Used Django’s login decorators (`@login_required`) and mixins to lock sensitive pages from guest users.
+* **Access Control:** Job seekers cannot access employer management dashboards, and employers cannot apply for jobs.
 
-### 4. Media & Static File Management
-* **File Uploads:** Configured robust media file handling to process and store candidate resumes securely.
-* **Deployment Ready:** Organized static assets (CSS, JS, Images) with proper production-ready settings.
+### 4. Production Ready & Deployment
+* **Media & Static Files:** Configured secure media storage to handle asset uploading and downloading without breaks.
+* **Live Deployment:** Configured production-ready settings (`ALLOWED_HOSTS`, environment variables, static root) and successfully deployed the application.
 
 ---
 
-## 🗺️ Core Core Web Routes (URL Roadmap)
+## 🗺️ Core Web Routes (URL Roadmap)
 
 | Module | URL Path | Method | Access Control | Description |
 | :--- | :--- | :---: | :--- | :--- |
